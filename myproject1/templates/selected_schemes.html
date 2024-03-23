@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selected schemes</title>
+    
+</head>
+<style>
+    .cont thead  tr   {
+        background-color: #009879;
+    }
+    .cont    tr:hover{
+            font-weight: bold;
+            color: #009879;
+            background-color: bisque;
+    }
+    .navbar ul{
+        list-style: none;
+        background-color: rgb(78, 82, 82);
+        padding: 0px;
+        margin: 0px;
+        overflow: hidden;
+    }
+    .navbar a{
+        color: white;
+        text-align: center;
+        padding: 15px;
+        display: block;
+    }
+    .navbar a:hover{
+        font-weight: bold;
+        background-color: rgb(0, 0, 0);
+        
+    }
+    .navbar li{
+        float: left;
+    }
+</style>   
+
+
+
+<body>
+    
+    <nav class="navbar">
+        <ul>
+            <li><a href="base">HOME</a></li>
+            <li><a href="http://127.0.0.1:8000/signup">Signup</a></li>
+            <li><a href="http://127.0.0.1:8000/login">Login</a></li>
+            <li><a href="selected_schemes">Selected Schemes</a></li>
+            <li><a href="http://127.0.0.1:8000/logger">All schemes</a></li>
+        </ul>
+    </nav>
+    {% block content %}
+      <h2>Selected Schemes</h2>
+      <table border="2" class="cont">
+        <tr>
+          <th>Scheme Name</th>
+          <th>Scheme Closing Date</th>
+          <th>Defective Verification</th>
+          <th>Institute Verification</th>
+          <th>MNO Verification</th>
+          
+          <th>Guideline Link</th>
+          <th>FAQ Link</th>
+          <th>Closing Date</th>
+        </tr>
+        {% for scholarship in selected_scholarships %}
+          <tr>
+            <td>{{ scholarship.scheme_name }}</td>
+            <td>{{ scholarship.Scheme_closing_date }}</td>
+            <td>{{ scholarship.defective_verification }}</td>
+            <td>{{ scholarship.institute_verification }}</td>
+            <td>{{ scholarship.MNO_verification }}</td>
+            <td><a href="https://scholarships.gov.in{{ scholarship.guidelinelink }}" target="_blank">Guidelines</a></td>
+                    <td><a href="https://scholarships.gov.in{{ scholarship.faq_link }}" target="_blank">FAQ</a></td>
+            <td>{{ scholarship.closing_date }}</td>
+          </tr>
+        {% empty %}
+          <tr>
+            <td colspan="9">No selected schemes.</td>
+          </tr>
+        {% endfor %}
+      </table>
+    {% endblock %}
+    
+    

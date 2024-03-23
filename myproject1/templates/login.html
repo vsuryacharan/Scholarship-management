@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<style>
+.navbar ul{
+  list-style: none;
+  background-color: rgb(170, 206, 206);
+  padding: 0px;
+  margin: 0px;
+  overflow: hidden;
+}
+.navbar a{
+  color: white;
+  text-align: center;
+  padding: 15px;
+  display: block;
+}
+.navbar a:hover{
+  font-weight: bold;
+  background-color: rgb(0, 0, 0);
+  
+}
+.navbar li{
+  float: left;
+}
+.bg{
+  background-color: rgb(78, 82, 82);
+}
+</style>   
+
+<body class="bg">
+<nav class="navbar">
+  <ul><li><a href="base">HOME</a></li>
+      <li><a href="signup">Signup</a></li>
+      <li><a href="login">Login</a></li>
+  </ul>
+</nav>
+
+{% block content %}
+  <h2>Login PAGE</h2>
+  <form method="post" action="">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="but">Login</button>
+  </form>
+  
+{% endblock %}
+</html>
+</body>

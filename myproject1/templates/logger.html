@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scholarships</title>
+    
+</head>
+<style>
+    .cont thead  tr   {
+        background-color: #009879;
+    }
+    .cont    tr:hover{
+            font-weight: bold;
+            color: #009879;
+            background-color: bisque;
+    }
+    .navbar ul{
+        list-style: none;
+        background-color: rgb(78, 82, 82);
+        padding: 0px;
+        margin: 0px;
+        overflow: hidden;
+    }
+    .navbar a{
+        color: white;
+        text-align: center;
+        padding: 15px;
+        display: block;
+    }
+    .navbar a:hover{
+        font-weight: bold;
+        background-color: rgb(0, 0, 0);
+        
+    }
+    .navbar li{
+        float: left;
+    }
+</style>   
+
+
+ 
+ 
+
+<body>
+    
+    <nav class="navbar">
+        <ul>
+            <h1>Welcome {{ username }}!</h1>
+            <li><a href="http://127.0.0.1:8000">HOME</a></li>
+            <li><a href="http://127.0.0.1:8000/signup">Signup</a></li>
+            <li><a href="http://127.0.0.1:8000/login">Login</a></li>
+            <li><a href="selected_schemes">Selected Schemes</a></li>
+            <li><a href="logger">All schemes</a></li>
+            
+        </ul>
+    </nav>
+    
+    <tbody>
+    <table border="2" class="cont">
+        <thead>
+        <tr>
+            <td><h1>Scheme Name</h1></td>
+            <td ><h1>Closing Date</h1></td>
+
+            <td><h1>Defective verification</h1> </td>
+            <td><h1>Institute Verification</h1></td>
+            <td><h1>MNO Verification</h1></td>
+            <td><h1>Guidelines</h1></td>
+          
+            <td><h1>FAQ</h1></td>
+            
+
+        </tr>
+    </thead>
+  
+    <form method="POST" action="{% url 'logger_view' %}">
+        {% csrf_token %}
+        
+            {% for scholarship in scholarships %}
+                <tr class="main">
+                    <td>
+                        <input type="checkbox" name="is_selected" value="{{ scholarship.id }}" {% if scholarship.id in selected_scholarship_ids %}checked{% endif %}>
+                        {{ scholarship.scheme_name }}
+                    </td>
+                    <td>{{ scholarship.Scheme_closing_date }}</td>
+                    <td>{{ scholarship.defective_verification }}</td>
+                    <td>{{ scholarship.institute_verification }}</td>
+                    <td>{{ scholarship.MNO_verification }}</td>
+                    <td><a href="https://scholarships.gov.in{{ scholarship.guidelinelink }}" target="_blank">Guidelines</a></td>
+                    <td><a href="https://scholarships.gov.in{{ scholarship.faq_link }}" target="_blank">FAQ</a></td>
+                </tr>
+            {% endfor %}
+        
+        <button type="submit">Submit</button>
+    </form>
+    
+        </tbody>
+    </table>
+</body>
+</html>

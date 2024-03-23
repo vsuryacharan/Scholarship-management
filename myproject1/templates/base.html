@@ -1,0 +1,67 @@
+<!-- myapp/templates/base.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}My Project{% endblock %}</title>
+</head>
+<style>
+    .cont thead  tr   {
+        background-color: #009879;
+    }
+    .cont    tr:hover{
+            font-weight: bold;
+            color: #009879;
+            background-color: bisque;
+    }
+    .navbar ul{
+        list-style: none;
+        background-color: rgb(78, 82, 82);
+        padding: 0px;
+        margin: 0px;
+        overflow: hidden;
+    }
+    .navbar a{
+        color: white;
+        text-align: center;
+        padding: 15px;
+        display: block;
+    }
+    .navbar a:hover{
+        font-weight: bold;
+        background-color: rgb(0, 0, 0);
+        
+    }
+    .navbar li{
+        float: left;
+    }
+    .bg{
+        background-color: rgb(78, 82, 82);
+    }
+</style>   
+
+<body class="bg">
+    <nav class="navbar">
+        <ul>
+            <li><a href="base">HOME</a></li>
+            <li><a href="signup">Signup</a></li>
+            <li><a href="login">Login</a></li>
+        </ul>
+    </nav>
+    <h1>Welcome To Scholarship Portal</h1>
+    <h1>TOP SCHOLARSHIPS SELECTED</h1>
+    <!-- base.html or any other template -->
+    {% for scholarship in scholarships %}
+    <table border="2" class="cont">
+        <thead>
+        <tr>
+    
+    <td>Scheme Name: {{ scholarship.scholarship__scheme_name }}</td>
+    <td>Number of Users Selected: {{ scholarship.user_count }}</td>
+{% endfor %}
+</tr>
+</thead>
+</table>
+
+</body>
+</html>

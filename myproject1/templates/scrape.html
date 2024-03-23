@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scholarships</title>
+    
+</head>
+<style>
+    .cont thead  tr   {
+        background-color: #009879;
+    }
+    .cont    tr:hover{
+            font-weight: bold;
+            color: #009879;
+            background-color: bisque;
+    }
+    .navbar ul{
+        list-style: none;
+        background-color: rgb(78, 82, 82);
+        padding: 0px;
+        margin: 0px;
+        overflow: hidden;
+    }
+    .navbar a{
+        color: white;
+        text-align: center;
+        padding: 15px;
+        display: block;
+    }
+    .navbar a:hover{
+        font-weight: bold;
+        background-color: rgb(0, 0, 0);
+        
+    }
+    .navbar li{
+        float: left;
+    }
+</style>   
+
+
+ 
+ 
+
+<body>
+    <nav class="navbar">
+        <ul>
+            <li><a href="signup">Signup</a></li>
+            <li><a href="login">Login</a></li>
+        </ul>
+    </nav>
+    
+    <tbody>
+    <table border="2" class="cont">
+        <thead>
+        <tr>
+            <td><h1>Scheme Name</h1></td>
+            <td ><h1>Closing Date</h1></td>
+
+            <td><h1>Defective verification</h1> </td>
+            <td><h1>Institute Verification</h1></td>
+            <td><h1>MNO Verification</h1></td>
+            <td><h1>Guidelines</h1></td>
+          
+            <td><h1>FAQ</h1></td>
+            
+
+        </tr>
+    </thead>
+  
+        
+       
+   
+            {% for i in data %}
+                <tr class="main">
+                    <td>{{ i.scheme_name}}</td>
+                    <td >{{i.Scheme_closing_date}}</td>
+
+                    <td>{{ i.defective_verification}}</td>
+                    <td>{{ i.institute_verification}}</td>
+                    <td>{{ i.MNO_verification }}</td>
+                    <td><a href="https://scholarships.gov.in{{i.guidelinelink}}" target="_blank">Guidelines</a></td>
+                  
+                    <td><a href="https://scholarships.gov.in{{i.faq_link}}" target="_blank">FAQ</td>
+                    
+
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
